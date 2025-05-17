@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+.venv/
+conversation_memory.json
+player_state.json
+.env
