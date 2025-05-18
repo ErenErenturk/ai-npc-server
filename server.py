@@ -1,20 +1,35 @@
+import datetime
+import time
+import os
+from termcolor import cprint, colored
+from pyfiglet import figlet_format
 import socket
 from llm_interface import get_greeting, get_named_reply, get_reply_with_memory
 from memory import conversation_memory, load_memory, save_memory
 from player_state import load_state, update_state, get_state
 
+def show_banner():
+    os.system("cls" if os.name == "nt" else "clear")
+    cprint(figlet_format("AI NPC Server", font="slant"), "cyan")
+    now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    cprint(f"🕒 Startup Time: {now}", "yellow")
+    print()
+    cprint("🚀 Initializing server components...", "green")
+    time.sleep(0.5)
+
 HOST = "127.0.0.1"
 PORT = 65432
 
 def run_server():
+    show_banner()  # <-- Banner gösterimi
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         load_memory()
-        print("📂 Memory loaded.")
+        cprint("📂 Memory loaded.", "blue")
         load_state()
-        print("📂 Player state loaded.")
+        cprint("📂 Player state loaded.", "blue")
         s.bind((HOST, PORT))
         s.listen()
-        print(f"🟢 LLM NPC Server is running at {HOST}:{PORT}...")
+        cprint(f"🟢 LLM NPC Server is running at {HOST}:{PORT}...", "green", attrs=["bold"])
 
         while True:
             conn, addr = s.accept()
