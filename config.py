@@ -1,7 +1,3 @@
-from dotenv import load_dotenv
-import os
+OPENROUTER_API_KEY = "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"
+OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1"
 
-load_dotenv()
-
-OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
-OPENROUTER_BASE_URL = os.getenv("OPENROUTER_BASE_URL")
