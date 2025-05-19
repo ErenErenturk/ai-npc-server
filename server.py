@@ -50,8 +50,8 @@ def run_server():
                         conversation_memory[player_id] = [
                             {"role": "system", "content": f"The player's name is {player_name}."}
                         ]
-                        reply = f"✅ Name '{player_name}' introduced and stored in memory."
-                        save_memory()  # 💾 her cevap sonrası kaydet
+                        reply = get_named_reply(player_name)  # 🔄 Burayı değiştirdik
+                        save_memory()
                     except Exception as e:
                         reply = f"❌ Introduce format error: {str(e)}"
                 elif data.startswith("msg:"):
